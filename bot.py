@@ -7,7 +7,7 @@ from discord.ext import commands
 intents = discord.Intents.all()
 
 
-client = commands.Bot(command_prefix=lambda x, y: "HELLO", intents=intents)
+client = commands.Bot(command_prefix=lambda x, y: ".", intents=intents)
 
 
 @client.event
@@ -23,10 +23,10 @@ async def reload(ctx):
         for ext in os.listdir("extensions"):
             if ext.endswith(".py"):
                 try:
-                    client.unload_extension(f"extensions.{ext[:-3]}")
+                    await client.unload_extension(f"extensions.{ext[:-3]}")
                 except:
                     pass
-                client.load_extension(f"extensions.{ext[:-3]}")
+                await client.load_extension(f"extensions.{ext[:-3]}")
         await ctx.send(f"Reloaded all extensions successfully.")
     except Exception as e:
         await ctx.send(e)
@@ -39,4 +39,4 @@ try:
 except Exception as e:
     print(e)
 
-client.run("")  # id here
+client.run("OTQ5MzE0NjAwNzMyNTk4Mjkz.YiIkHg.pEnhdKkxRF5l_jMm91iXMW2_-kU")

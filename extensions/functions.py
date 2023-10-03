@@ -10,8 +10,9 @@ class Functions(commands.Cog):
         self.letter_height = 300
         self.letters = get_letters(self.letter_height, "AnimeFont/")
 
-    @commands.Cog.listener()
+    @commands.Cog.listener("on_message")
     async def on_message(self, message):
+        print(message.content)
         if message.author == self.client.user:
             return
         if str(message.content)[0] == ".":
@@ -23,5 +24,5 @@ class Functions(commands.Cog):
                 await message.channel.send(file=picture)
 
 
-def setup(client):
-    client.add_cog(Functions(client))
+async def setup(client):
+    await client.add_cog(Functions(client))

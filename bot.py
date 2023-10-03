@@ -1,3 +1,5 @@
+import asyncio
+
 import discord
 import random
 import json
@@ -32,11 +34,14 @@ async def reload(ctx):
         await ctx.send(e)
 
 
-try:
-    for ext in os.listdir("extensions"):
-        if ext.endswith(".py"):
-            client.load_extension(f"extensions.{ext[:-3]}")
-except Exception as e:
-    print(e)
+async def loadExtensions():
+    try:
+        for ext in os.listdir("extensions"):
+            if ext.endswith(".py"):
+                await client.load_extension(f"extensions.{ext[:-3]}")
+    except Exception as e:
+        print(e)
 
-client.run("OTQ5MzE0NjAwNzMyNTk4Mjkz.YiIkHg.pEnhdKkxRF5l_jMm91iXMW2_-kU")
+asyncio.run(loadExtensions())
+
+client.run("not twice")
